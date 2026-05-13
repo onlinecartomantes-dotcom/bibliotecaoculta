@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Biblioteca Oculta</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Inter',sans-serif;
+background:#050505;
+color:#fff;
+overflow-x:hidden;
+}
+
+/* FUNDO */
+
+body::before{
+content:'';
+position:fixed;
+inset:0;
+background:
+radial-gradient(circle at top, rgba(160,0,0,.20), transparent 35%),
+radial-gradient(circle at bottom, rgba(120,0,0,.15), transparent 40%);
+z-index:-1;
+}
+
+/* SCROLL */
+
+::-webkit-scrollbar{
+width:10px;
+}
+
+::-webkit-scrollbar-thumb{
+background:#8d0000;
+border-radius:100px;
+}
+
+/* CONTAINER */
+
+.container{
+max-width:1240px;
+margin:auto;
+padding:0 24px;
+}
+
+/* HERO */
+
+.hero{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+position:relative;
+overflow:hidden;
+padding:80px 0;
+}
+
+.hero::before{
+content:'';
+position:absolute;
+inset:0;
+background:
+radial-gradient(circle at center,
+rgba(255,0,0,.12),
+transparent 60%);
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+width:100%;
+}
+
+.badge{
+display:inline-flex;
+align-items:center;
+gap:10px;
+padding:12px 20px;
+border-radius:999px;
+background:rgba(255,255,255,.04);
+border:1px solid rgba(255,255,255,.08);
+color:#ffb7b7;
+margin-bottom:30px;
+font-size:14px;
+font-weight:600;
+letter-spacing:1px;
+}
+
+.hero h1{
+font-family:'Cinzel',serif;
+font-size:88px;
+line-height:0.95;
+margin-bottom:30px;
+background:linear-gradient(to bottom,#fff,#ffbaba);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.hero p{
+max-width:900px;
+margin:auto;
+font-size:22px;
+line-height:1.8;
+color:#d5d5d5;
+}
+
+.hero-logo{
+width:100%;
+max-width:620px;
+display:block;
+margin:55px auto 40px;
+filter:drop-shadow(0 0 45px rgba(255,0,0,.25));
+}
+
+/* BOTÃO */
+
+.btn{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+padding:22px 48px;
+border-radius:18px;
+background:linear-gradient(135deg,#730000,#ff2323);
+color:#fff;
+font-size:18px;
+font-weight:800;
+text-decoration:none;
+transition:.35s;
+box-shadow:
+0 0 30px rgba(255,0,0,.25);
+}
+
+.btn:hover{
+transform:translateY(-4px) scale(1.03);
+box-shadow:
+0 0 45px rgba(255,0,0,.45);
+}
+
+.hero-mini{
+margin-top:18px;
+color:#bcbcbc;
+font-size:15px;
+}
+
+/* STATS */
+
+.stats{
+margin-top:75px;
+display:flex;
+justify-content:center;
+gap:28px;
+flex-wrap:wrap;
+}
+
+.stat{
+background:rgba(255,255,255,.03);
+border:1px solid rgba(255,255,255,.05);
+padding:35px;
+border-radius:24px;
+min-width:260px;
+backdrop-filter:blur(10px);
+}
+
+.stat h2{
+font-size:70px;
+color:#ff4141;
+font-weight:900;
+line-height:1;
+}
+
+.stat p{
+margin-top:12px;
+font-size:18px;
+color:#d2d2d2;
+}
+
+/* SECTION */
+
+section{
+padding:110px 0;
+}
+
+.section-title{
+text-align:center;
+margin-bottom:70px;
+}
+
+.section-title span{
+color:#ff8f8f;
+font-size:14px;
+text-transform:uppercase;
+letter-spacing:2px;
+font-weight:700;
+}
+
+.section-title h2{
+font-family:'Cinzel',serif;
+font-size:58px;
+line-height:1.2;
+margin-top:20px;
+}
+
+.section-title p{
+max-width:850px;
+margin:24px auto 0;
+font-size:19px;
+line-height:1.9;
+color:#d0d0d0;
+}
+
+/* PREÇO DESTAQUE */
+
+.price-highlight{
+display:inline-block;
+margin-top:28px;
+padding:18px 30px;
+border-radius:18px;
+background:linear-gradient(135deg,#5c0000,#ff2a2a);
+font-size:42px;
+font-weight:900;
+box-shadow:
+0 0 35px rgba(255,0,0,.35);
+}
+
+/* BOOKS */
+
+.books-wrapper{
+position:relative;
+width:100%;
+overflow:hidden;
+padding:45px 0;
+display:flex;
+flex-direction:column;
+gap:28px;
+background:
+radial-gradient(circle at center,
+rgba(120,0,0,.30),
+#050505 65%);
+}
+
+.fade-left,
+.fade-right{
+position:absolute;
+top:0;
+width:180px;
+height:100%;
+z-index:20;
+pointer-events:none;
+}
+
+.fade-left{
+left:0;
+background:linear-gradient(to right,#050505,transparent);
+}
+
+.fade-right{
+right:0;
+background:linear-gradient(to left,#050505,transparent);
+}
+
+.marquee{
+width:max-content;
+display:flex;
+}
+
+.track{
+display:flex;
+align-items:center;
+gap:42px;
+padding:0 20px;
+}
+
+.track img{
+width:150px;
+height:230px;
+object-fit:cover;
+border-radius:16px;
+flex-shrink:0;
+border:1px solid rgba(255,255,255,.08);
+box-shadow:
+0 0 10px rgba(0,0,0,.5),
+0 0 30px rgba(0,0,0,.45);
+transition:.35s;
+}
+
+.track img:hover{
+transform:scale(1.08);
+}
+
+.marquee-left{
+animation:scrollLeft 20s linear infinite;
+}
+
+.marquee-right{
+animation:scrollRight 20s linear infinite;
+}
+
+@keyframes scrollLeft{
+from{
+transform:translateX(0);
+}
+to{
+transform:translateX(-50%);
+}
+}
+
+@keyframes scrollRight{
+from{
+transform:translateX(-50%);
+}
+to{
+transform:translateX(0);
+}
+}
+
+/* CARDS */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:28px;
+}
+
+.card{
+background:rgba(255,255,255,.03);
+border:1px solid rgba(255,255,255,.05);
+padding:38px;
+border-radius:26px;
+transition:.35s;
+position:relative;
+overflow:hidden;
+}
+
+.card::before{
+content:'';
+position:absolute;
+inset:0;
+background:
+linear-gradient(180deg,
+rgba(255,0,0,.08),
+transparent 60%);
+opacity:0;
+transition:.35s;
+}
+
+.card:hover::before{
+opacity:1;
+}
+
+.card:hover{
+transform:translateY(-10px);
+border-color:rgba(255,0,0,.35);
+}
+
+.card-number{
+font-size:65px;
+font-weight:900;
+color:#6e0d0d;
+margin-bottom:18px;
+}
+
+.card h3{
+font-size:28px;
+margin-bottom:15px;
+}
+
+.card p{
+color:#d2d2d2;
+line-height:1.9;
+}
+
+/* TAGS */
+
+.tags{
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+gap:18px;
+}
+
+.tag-item{
+padding:16px 24px;
+border-radius:999px;
+background:rgba(255,255,255,.03);
+border:1px solid rgba(255,255,255,.06);
+transition:.3s;
+font-weight:500;
+}
+
+.tag-item:hover{
+background:#7f0000;
+transform:translateY(-3px);
+}
+
+/* TESTIMONIALS */
+
+.testimonials{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:30px;
+}
+
+.testimonial{
+background:rgba(255,255,255,.03);
+border:1px solid rgba(255,255,255,.05);
+padding:38px;
+border-radius:26px;
+}
+
+.stars{
+font-size:22px;
+color:#ffc400;
+margin-bottom:18px;
+}
+
+.testimonial p{
+line-height:1.9;
+color:#ddd;
+}
+
+.user{
+display:flex;
+align-items:center;
+gap:15px;
+margin-top:30px;
+}
+
+.user img{
+width:60px;
+height:60px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.user strong{
+display:block;
+font-size:16px;
+}
+
+/* PREÇO */
+
+.price-box{
+max-width:820px;
+margin:auto;
+padding:70px;
+border-radius:30px;
+text-align:center;
+background:
+linear-gradient(180deg,
+rgba(255,0,0,.18),
+rgba(255,255,255,.03));
+border:1px solid rgba(255,255,255,.08);
+box-shadow:
+0 0 45px rgba(255,0,0,.12);
+}
+
+.old-price{
+text-decoration:line-through;
+color:#999;
+font-size:28px;
+margin-bottom:10px;
+}
+
+.price{
+font-size:95px;
+font-weight:900;
+color:#ff3434;
+line-height:1;
+text-shadow:
+0 0 25px rgba(255,0,0,.4);
+}
+
+.price-box ul{
+list-style:none;
+margin:40px 0;
+}
+
+.price-box li{
+margin:18px 0;
+font-size:19px;
+color:#ddd;
+}
+
+.secure{
+margin-top:25px;
+font-size:15px;
+color:#bbb;
+}
+
+/* FAQ */
+
+.faq{
+max-width:1000px;
+margin:auto;
+}
+
+.faq-item{
+background:rgba(255,255,255,.03);
+border:1px solid rgba(255,255,255,.05);
+padding:32px;
+border-radius:22px;
+margin-bottom:22px;
+}
+
+.faq-item h3{
+margin-bottom:14px;
+font-size:22px;
+}
+
+.faq-item p{
+line-height:1.9;
+color:#cfcfcf;
+}
+
+/* FOOTER */
+
+footer{
+padding:80px 20px;
+text-align:center;
+border-top:1px solid rgba(255,255,255,.05);
+}
+
+footer h2{
+font-family:'Cinzel',serif;
+margin-bottom:20px;
+font-size:34px;
+}
+
+.footer-icons{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+margin-bottom:20px;
+color:#ccc;
+}
+
+/* POPUP */
+
+.popup{
+position:fixed;
+left:20px;
+bottom:20px;
+z-index:9999;
+background:rgba(12,12,12,.96);
+border:1px solid rgba(255,255,255,.08);
+border-left:4px solid #ff2a2a;
+padding:16px 18px;
+border-radius:18px;
+display:flex;
+align-items:center;
+gap:14px;
+max-width:360px;
+box-shadow:
+0 0 35px rgba(0,0,0,.55);
+animation:popupShow .5s ease;
+}
+
+.popup img{
+width:56px;
+height:56px;
+border-radius:50%;
+object-fit:cover;
+}
+
+.popup strong{
+display:block;
+margin-bottom:4px;
+font-size:15px;
+}
+
+.popup span{
+color:#aaa;
+font-size:14px;
+}
+
+@keyframes popupShow{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* RESPONSIVO */
+
+@media(max-width:900px){
+
+.hero h1{
+font-size:58px;
+}
+
+.section-title h2{
+font-size:42px;
+}
+
+.price{
+font-size:64px;
+}
+
+}
+
+@media(max-width:768px){
+
+.hero{
+padding-top:40px;
+padding-bottom:80px;
+}
+
+.hero h1{
+font-size:44px;
+}
+
+.hero p{
+font-size:17px;
+}
+
+.hero-logo{
+max-width:95%;
+}
+
+.track img{
+width:110px;
+height:180px;
+}
+
+.stat{
+width:100%;
+}
+
+.price-box{
+padding:40px 25px;
+}
+
+.price{
+font-size:58px;
+}
+
+.price-highlight{
+font-size:32px;
+}
+
+.popup{
+left:10px;
+right:10px;
+max-width:unset;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="container hero-content">
+
+<div class="badge">
+🔥 O maior acervo oculto já reunido num só lugar
+</div>
+
+<h1>
+BIBLIOTECA<br>
+OCULTA
+</h1>
+
+<p>
+20.000 livros sobre magia, esoterismo, ocultismo e desenvolvimento humano.
+Na palma da sua mão. Por um único pagamento.
+</p>
+
+<img class="hero-logo"
+src="https://i.ibb.co/Qvw69tNR/Chat-GPT-Image-13-05-2026-04-04-03.png">
+
+<a href="#" class="btn">
+⚡ ACESSAR AGORA
+</a>
+
+<div class="hero-mini">
+🔒 Pagamento único · ⚡ Acesso imediato
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<h2>20.000</h2>
+<p>Livros</p>
+</div>
+
+<div class="stat">
+<h2>+50</h2>
+<p>Temas e tradições</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- SOBRE -->
+
+<section>
+
+<div class="container">
+
+<div class="section-title">
+
+<span>A partir de</span>
+
+<div class="price-highlight">
+R$59,90
+</div>
+
+<h2>
+Conhecimento proibido.<br>
+Agora ao seu alcance.
+</h2>
+
+<p>
+Você terá acesso a obras raras, censuradas e de difícil acesso que a maioria das pessoas jamais encontrará.
+Grimórios, escrituras apócrifas, textos iniciáticos e clássicos do ocultismo mundial.
+<br><br>
+Tudo reunido em um único lugar, por menos do que você gasta num lanche.
+</p>
+
+<br><br>
+
+<a href="#" class="btn">
+🔥 ACESSAR AGORA
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- BOOKS -->
+
+<section style="padding-top:0">
+
+<div class="section-title">
+<span>É apenas o que podemos mostrar aqui</span>
+</div>
+
+<div class="books-wrapper">
+
+<div class="fade-left"></div>
+<div class="fade-right"></div>
+
+<div class="marquee marquee-left">
+<div class="track">
+
+<img src="https://biblioteca-secreta.vercel.app/books/0.jpg">
+<img src="https://biblioteca-secreta.vercel.app/books/1.jpg">
+<img src="https://biblioteca-secreta.vercel.app/books/2.jpg">
+<img src="https://biblioteca-secreta.vercel.app/books/3.png">
+<img src="https://biblioteca-secreta.vercel.app/books/4.jpg">
+<img src="https://biblioteca-secreta.vercel.app/books/5.jpg">
+<img src="https://biblioteca-secreta.vercel.app/books/6.jpg">
+<img src="https://biblioteca-secreta.vercel.app/books/7.png">
+<img src="https://biblioteca-secreta.vercel.app/books/8.jpg">
+<img src="https://biblioteca-secreta.vercel.app/books/9.png">
+
+<img src="https://biblioteca-secreta.vercel.app/books/0.jpg">
+<img src="https://biblioteca-secreta.vercel.app/books/1.jpg">
+<img src="https://biblioteca-secreta.vercel.app/books/2.jpg">
+<img src="https://biblioteca-secreta.vercel.app/books/3.png">
+
+</div>
+</div>
+
+<div class="marquee marquee-right">
+<div class="track">
+
+<img src="https://biblioteca-secreta.vercel.app/books/17.jpg">
+<img src="https://biblioteca-secreta.vercel.app/books/18.png">
+<img src="https://biblioteca-secreta.vercel.app/books/19.webp">
+<img src="https://biblioteca-secreta.vercel.app/books/20.png">
+<img src="https://biblioteca-secreta.vercel.app/books/21.jpg">
+<img src="https://biblioteca-secreta.vercel.app/books/22.jpg">
+<img src="https://biblioteca-secreta.vercel.app/books/23.jpg">
+<img src="https://biblioteca-secreta.vercel.app/books/24.png">
+<img src="https://biblioteca-secreta.vercel.app/books/25.jpg">
+
+<img src="https://biblioteca-secreta.vercel.app/books/17.jpg">
+<img src="https://biblioteca-secreta.vercel.app/books/18.png">
+<img src="https://biblioteca-secreta.vercel.app/books/19.webp">
+
+</div>
+</div>
+
+</div>
+
+</section>
+
+<!-- FEATURES -->
+
+<section>
+
+<div class="container">
+
+<div class="section-title">
+
+<span>O que você encontra</span>
+
+<h2>
+Tudo que você precisava<br>
+estava escondido.
+</h2>
+
+</div>
+
+<div class="grid">
+
+<div class="card">
+<div class="card-number">01</div>
+<h3>Magia & Rituais</h3>
+<p>Feitiços, invocações, alta magia, sigilos, evocações e práticas reais de diversas tradições.</p>
+</div>
+
+<div class="card">
+<div class="card-number">02</div>
+<h3>Desenvolvimento Mental</h3>
+<p>Projeção astral, sonhos lúcidos, telepatia, foco e expansão da consciência.</p>
+</div>
+
+<div class="card">
+<div class="card-number">03</div>
+<h3>Tradições & Ordens</h3>
+<p>Maçonaria, Rosacruz, Cabala, Hermetismo, Wicca e dezenas de tradições iniciáticas.</p>
+</div>
+
+<div class="card">
+<div class="card-number">04</div>
+<h3>Obras Raras</h3>
+<p>Grimórios, escrituras apócrifas e textos iniciáticos difíceis de encontrar.</p>
+</div>
+
+<div class="card">
+<div class="card-number">05</div>
+<h3>Manifestação</h3>
+<p>Ferramentas práticas para transformar intenção em realidade.</p>
+</div>
+
+<div class="card">
+<div class="card-number">06</div>
+<h3>Autoconhecimento</h3>
+<p>Shadow work, meditações e libertação de bloqueios internos.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- TESTIMONIALS -->
+
+<section>
+
+<div class="container">
+
+<div class="section-title">
+
+<span>Relatos</span>
+
+<h2>O QUE DIZEM OS MEMBROS</h2>
+
+</div>
+
+<div class="testimonials">
+
+<div class="testimonial">
+
+<div class="stars">★★★★★</div>
+
+<p>
+“Comprei achando que seria um monte de PDFs aleatórios… mas é muito organizado. Já estou viciado nos conteúdos.”
+</p>
+
+<div class="user">
+<img src="https://randomuser.me/api/portraits/men/32.jpg">
+<div>
+<strong>Rafael M.</strong>
+<span>São Paulo/SP</span>
+</div>
+</div>
+
+</div>
+
+<div class="testimonial">
+
+<div class="stars">★★★★★</div>
+
+<p>
+“Isso aqui vale muito mais que o preço. Tem livro que eu procurava fazia anos.”
+</p>
+
+<div class="user">
+<img src="https://randomuser.me/api/portraits/women/44.jpg">
+<div>
+<strong>Carla T.</strong>
+<span>Belo Horizonte/MG</span>
+</div>
+</div>
+
+</div>
+
+<div class="testimonial">
+
+<div class="stars">★★★★★</div>
+
+<p>
+“Tem desde conteúdos básicos até materiais extremamente profundos.”
+</p>
+
+<div class="user">
+<img src="https://randomuser.me/api/portraits/men/67.jpg">
+<div>
+<strong>Diego F.</strong>
+<span>Recife/PE</span>
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- PREÇO -->
+
+<section>
+
+<div class="container">
+
+<div class="section-title">
+
+<span>Escolha seu acesso</span>
+
+<h2>
+Um único pagamento.<br>
+Para sempre.
+</h2>
+
+<p>
+Sem mensalidade. Sem renovação.
+Você paga uma vez e acessa para sempre.
+</p>
+
+</div>
+
+<div class="price-box">
+
+<div class="old-price">
+De R$197,00
+</div>
+
+<div class="price">
+R$59,90
+</div>
+
+<p style="margin-top:14px;color:#ffbaba;font-weight:700;font-size:18px">
+🔥 Oferta promocional por tempo limitado
+</p>
+
+<ul>
+<li>✔ Acesso completo a 20.000 livros</li>
+<li>✔ Mais de 50 temas e tradições</li>
+<li>✔ Obras raras e censuradas</li>
+<li>✔ Atualizações contínuas</li>
+<li>✔ Funciona no celular e computador</li>
+</ul>
+
+<a href="#" class="btn">
+⚡ ACESSAR O ACERVO COMPLETO
+</a>
+
+<div class="secure">
+🔒 Pagamento seguro · ⚡ Acesso imediato
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FAQ -->
+
+<section>
+
+<div class="container">
+
+<div class="section-title">
+
+<span>Dúvidas</span>
+
+<h2>Perguntas Frequentes</h2>
+
+</div>
+
+<div class="faq">
+
+<div class="faq-item">
+<h3>O acesso é vitalício?</h3>
+<p>Sim. Você paga apenas uma vez e acessa para sempre.</p>
+</div>
+
+<div class="faq-item">
+<h3>Funciona no celular?</h3>
+<p>Sim. Funciona em celular, tablet e computador.</p>
+</div>
+
+<div class="faq-item">
+<h3>Os livros estão em português?</h3>
+<p>Sim. Todo o acervo está traduzido para português.</p>
+</div>
+
+<div class="faq-item">
+<h3>Como recebo o acesso?</h3>
+<p>Após o pagamento você recebe tudo por e-mail automaticamente.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+<h2>Biblioteca Oculta</h2>
+
+<div class="footer-icons">
+<div>🔒 Pagamento Seguro</div>
+<div>⚡ Acesso Imediato</div>
+</div>
+
+<p>
+© 2026 Biblioteca Oculta · Todos os direitos reservados
+</p>
+
+</footer>
+
+<!-- POPUP -->
+
+<div class="popup" id="popup">
+
+<img id="popup-img" src="https://randomuser.me/api/portraits/men/32.jpg">
+
+<div>
+<strong id="popup-name">Rafael acabou de adquirir</strong>
+<span id="popup-text">Biblioteca Oculta Premium</span>
+</div>
+
+</div>
+
+<script>
+
+const popups = [
+
+{
+name:"Lucas de São Paulo/SP",
+img:"https://randomuser.me/api/portraits/men/32.jpg",
+text:"acabou de adquirir o acesso completo"
+},
+
+{
+name:"Fernanda de Curitiba/PR",
+img:"https://randomuser.me/api/portraits/women/44.jpg",
+text:"garantiu acesso vitalício"
+},
+
+{
+name:"André do Rio de Janeiro/RJ",
+img:"https://randomuser.me/api/portraits/men/75.jpg",
+text:"acabou de entrar na Biblioteca Oculta"
+},
+
+{
+name:"Mariana de Belo Horizonte/MG",
+img:"https://randomuser.me/api/portraits/women/65.jpg",
+text:"desbloqueou os 20.000 livros"
+},
+
+{
+name:"Carlos de Recife/PE",
+img:"https://randomuser.me/api/portraits/men/52.jpg",
+text:"acabou de comprar o acesso premium"
+},
+
+{
+name:"Juliana de Fortaleza/CE",
+img:"https://randomuser.me/api/portraits/women/68.jpg",
+text:"acabou de acessar o acervo"
+},
+
+{
+name:"Ricardo de Campinas/SP",
+img:"https://randomuser.me/api/portraits/men/81.jpg",
+text:"entrou para os membros premium"
+}
+
+];
+
+const popup = document.getElementById('popup');
+const popupName = document.getElementById('popup-name');
+const popupImg = document.getElementById('popup-img');
+const popupText = document.getElementById('popup-text');
+
+function showPopup(){
+
+const random = popups[Math.floor(Math.random() * popups.length)];
+
+popupName.innerHTML = random.name;
+popupText.innerHTML = random.text;
+popupImg.src = random.img;
+
+popup.style.display = 'flex';
+
+setTimeout(() => {
+popup.style.display = 'none';
+}, 5000);
+
+}
+
+setInterval(showPopup, 8000);
+
+setTimeout(showPopup, 3000);
+
+</script>
+
+</body>
+</html>
