@@ -328,43 +328,94 @@ box-shadow:
 
 .books-wrapper{
 position:relative;
+width:100%;
 overflow:hidden;
-padding:60px 0;
+padding:45px 0;
+display:flex;
+flex-direction:column;
+gap:28px;
+
 background:
-radial-gradient(circle at center, rgba(120,0,0,.28), transparent 65%);
+radial-gradient(circle at center,
+rgba(120,0,0,.30),
+transparent 65%);
 }
+
+/* FADES */
+
+.fade-left,
+.fade-right{
+position:absolute;
+top:0;
+width:180px;
+height:100%;
+z-index:20;
+pointer-events:none;
+}
+
+.fade-left{
+left:0;
+background:linear-gradient(to right,#050505,transparent);
+}
+
+.fade-right{
+right:0;
+background:linear-gradient(to left,#050505,transparent);
+}
+
+/* MARQUEE */
 
 .marquee{
 display:flex;
 width:max-content;
 }
 
+/* TRACK */
+
 .track{
 display:flex;
-gap:34px;
-padding:0 18px;
+align-items:center;
+gap:42px;
+padding:0 20px;
 }
+
+/* IMAGENS */
 
 .track img{
-width:170px;
-height:260px;
+width:145px;
+height:225px;
 object-fit:cover;
-border-radius:20px;
+border-radius:14px;
+flex-shrink:0;
+
 border:1px solid rgba(255,255,255,.08);
-transition:.35s;
+
 box-shadow:
-0 0 20px rgba(0,0,0,.5),
-0 0 40px rgba(0,0,0,.3);
+0 0 10px rgba(0,0,0,.5),
+0 0 30px rgba(0,0,0,.45);
+
+transition:
+transform .35s ease,
+box-shadow .35s ease;
 }
+
+/* HOVER */
 
 .track img:hover{
-transform:scale(1.08) rotate(-1deg);
+transform:scale(1.08);
 box-shadow:
-0 0 30px rgba(255,0,0,.3);
+0 0 20px rgba(255,255,255,.08),
+0 0 35px rgba(120,0,0,.45);
 }
 
+/* ANIMAÇÕES */
+
 .marquee-left{
-animation:scrollLeft 25s linear infinite;
+animation:scrollLeft 20s linear infinite;
+}
+
+.marquee-right{
+animation:scrollRight 20s linear infinite;
 }
 
 @keyframes scrollLeft{
@@ -373,6 +424,15 @@ transform:translateX(0);
 }
 to{
 transform:translateX(-50%);
+}
+}
+
+@keyframes scrollRight{
+from{
+transform:translateX(-50%);
+}
+to{
+transform:translateX(0);
 }
 }
 
@@ -850,27 +910,71 @@ em uma única biblioteca digital.
 
 <div class="books-wrapper">
 
-<div class="marquee marquee-left">
+  <!-- Fade lateral -->
+  <div class="fade-left"></div>
+  <div class="fade-right"></div>
 
-<div class="track">
+  <!-- LINHA SUPERIOR -->
+  <div class="marquee marquee-left">
+    <div class="track">
 
-<img src="https://biblioteca-secreta.vercel.app/books/0.jpg">
-<img src="https://biblioteca-secreta.vercel.app/books/1.jpg">
-<img src="https://biblioteca-secreta.vercel.app/books/2.jpg">
-<img src="https://biblioteca-secreta.vercel.app/books/3.png">
-<img src="https://biblioteca-secreta.vercel.app/books/4.jpg">
-<img src="https://biblioteca-secreta.vercel.app/books/5.jpg">
-<img src="https://biblioteca-secreta.vercel.app/books/6.jpg">
-<img src="https://biblioteca-secreta.vercel.app/books/7.png">
+      <img src="https://biblioteca-secreta.vercel.app/books/0.jpg">
+      <img src="https://biblioteca-secreta.vercel.app/books/1.jpg">
+      <img src="https://biblioteca-secreta.vercel.app/books/2.jpg">
+      <img src="https://biblioteca-secreta.vercel.app/books/3.png">
+      <img src="https://biblioteca-secreta.vercel.app/books/4.jpg">
+      <img src="https://biblioteca-secreta.vercel.app/books/5.jpg">
+      <img src="https://biblioteca-secreta.vercel.app/books/6.jpg">
+      <img src="https://biblioteca-secreta.vercel.app/books/7.png">
+      <img src="https://biblioteca-secreta.vercel.app/books/8.jpg">
+      <img src="https://biblioteca-secreta.vercel.app/books/9.png">
+      <img src="https://biblioteca-secreta.vercel.app/books/10.png">
 
-<img src="https://biblioteca-secreta.vercel.app/books/0.jpg">
-<img src="https://biblioteca-secreta.vercel.app/books/1.jpg">
-<img src="https://biblioteca-secreta.vercel.app/books/2.jpg">
-<img src="https://biblioteca-secreta.vercel.app/books/3.png">
+      <!-- DUPLICA -->
+      <img src="https://biblioteca-secreta.vercel.app/books/0.jpg">
+      <img src="https://biblioteca-secreta.vercel.app/books/1.jpg">
+      <img src="https://biblioteca-secreta.vercel.app/books/2.jpg">
+      <img src="https://biblioteca-secreta.vercel.app/books/3.png">
+      <img src="https://biblioteca-secreta.vercel.app/books/4.jpg">
+      <img src="https://biblioteca-secreta.vercel.app/books/5.jpg">
+      <img src="https://biblioteca-secreta.vercel.app/books/6.jpg">
+      <img src="https://biblioteca-secreta.vercel.app/books/7.png">
+      <img src="https://biblioteca-secreta.vercel.app/books/8.jpg">
+      <img src="https://biblioteca-secreta.vercel.app/books/9.png">
+      <img src="https://biblioteca-secreta.vercel.app/books/10.png">
 
-</div>
+    </div>
+  </div>
 
-</div>
+  <!-- LINHA INFERIOR -->
+  <div class="marquee marquee-right">
+    <div class="track">
+
+      <img src="https://biblioteca-secreta.vercel.app/books/17.jpg">
+      <img src="https://biblioteca-secreta.vercel.app/books/18.png">
+      <img src="https://biblioteca-secreta.vercel.app/books/19.webp">
+      <img src="https://biblioteca-secreta.vercel.app/books/20.png">
+      <img src="https://biblioteca-secreta.vercel.app/books/21.jpg">
+      <img src="https://biblioteca-secreta.vercel.app/books/22.jpg">
+      <img src="https://biblioteca-secreta.vercel.app/books/23.jpg">
+      <img src="https://biblioteca-secreta.vercel.app/books/24.png">
+      <img src="https://biblioteca-secreta.vercel.app/books/25.jpg">
+      <img src="https://biblioteca-secreta.vercel.app/books/26.jpg">
+
+      <!-- DUPLICA -->
+      <img src="https://biblioteca-secreta.vercel.app/books/17.jpg">
+      <img src="https://biblioteca-secreta.vercel.app/books/18.png">
+      <img src="https://biblioteca-secreta.vercel.app/books/19.webp">
+      <img src="https://biblioteca-secreta.vercel.app/books/20.png">
+      <img src="https://biblioteca-secreta.vercel.app/books/21.jpg">
+      <img src="https://biblioteca-secreta.vercel.app/books/22.jpg">
+      <img src="https://biblioteca-secreta.vercel.app/books/23.jpg">
+      <img src="https://biblioteca-secreta.vercel.app/books/24.png">
+      <img src="https://biblioteca-secreta.vercel.app/books/25.jpg">
+      <img src="https://biblioteca-secreta.vercel.app/books/26.jpg">
+
+    </div>
+  </div>
 
 </div>
 
